@@ -40,7 +40,7 @@
 
 ## 安装与使用
 
-1. 安装本目录为 bundle（在 DSH 里用「插件 › 添加插件」指向本地目录，或让 agent 用 `plugin_manager` 安装）。
+1. 拿到本仓库（`git clone https://github.com/ST31Orange/ark-agent-plan`），在 DSH 里用「插件 › 添加插件」指向这个目录；或让 agent 用 `plugin_manager` 的 `install_bundle` 安装该绝对路径。
 2. 打开 **设置 › 模型**，选 `Ark Agent Plan`，粘贴 Agent Plan 的 API Key（DSH 会写进凭据 `ARK_AGENT_PLAN_CN_API_KEY`；也可以直接写进 `~/.dsh/.credentials.yaml` 的 `refs`）。
 3. 回到对话，在模型选择器里挑 `Doubao Seed 2.1 Pro (Agent Plan)` 等条目即可。
 
