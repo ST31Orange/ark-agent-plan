@@ -1,10 +1,10 @@
 # ============================================================================
-# ark-agent-plan 鈥?DeepSeek Harness bundle patch
+# ark-agent-plan — DeepSeek Harness bundle patch
 #
 # Registers Volcengine Ark provider routes on the shared pi-ai adapter
 # (`@deepseek-ai/dsh-llm-pi-ai`, mounted dormant by dsh-base). Because these
 # providers are supplied here as the settings *base* layer, they show up in the
-# native model picker the moment this bundle is composed 鈥?the user only has to
+# native model picker the moment this bundle is composed — the user only has to
 # add an API key (the web Models page writes it to the credential name each
 # route references via `apiKeyEnv`).
 #
@@ -155,7 +155,7 @@
             maxTokens: 384000
             input: [text]
 
-      # --- Coding Plan (BytePlus / 娴峰) -----------------------------------
+      # --- Coding Plan (BytePlus / 海外) -----------------------------------
       # Not re-probed against a live endpoint: keeps its previously published entries.
       ark-coding-plan-byteplus:
         displayName: Ark Coding Plan (BytePlus)
@@ -174,10 +174,10 @@
             maxTokens: 65536
             input: [text, image]
 
-      # --- 鍚庝粯璐?API (cn-beijing) ------------------------------------------
+      # --- 后付费 API (cn-beijing) ------------------------------------------
       # Not re-probed against a live endpoint: keeps its previously published entries.
       ark-cn:
-        displayName: Ark (鍚庝粯璐?
+        displayName: Ark (后付费)
         apiKeyEnv: ARK_CN_API_KEY
         api: anthropic-messages
         baseURL: https://ark.cn-beijing.volces.com/api/v3/compatible
@@ -198,10 +198,10 @@
             maxTokens: 65536
             input: [text, image]
 
-      # --- 鍚庝粯璐?API 娴峰 (BytePlus) --------------------------------------
+      # --- 后付费 API 海外 (BytePlus) --------------------------------------
       # Not re-probed against a live endpoint: keeps its previously published entries.
       ark-byteplus:
-        displayName: Ark BytePlus (鍚庝粯璐?
+        displayName: Ark BytePlus (后付费)
         apiKeyEnv: ARK_BYTEPLUS_API_KEY
         api: anthropic-messages
         baseURL: https://ark.ap-southeast.bytepluses.com/api/v3/compatible
