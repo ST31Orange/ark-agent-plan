@@ -1,0 +1,213 @@
+# ============================================================================
+# ark-agent-plan 鈥?DeepSeek Harness bundle patch
+#
+# Registers Volcengine Ark provider routes on the shared pi-ai adapter
+# (`@deepseek-ai/dsh-llm-pi-ai`, mounted dormant by dsh-base). Because these
+# providers are supplied here as the settings *base* layer, they show up in the
+# native model picker the moment this bundle is composed 鈥?the user only has to
+# add an API key (the web Models page writes it to the credential name each
+# route references via `apiKeyEnv`).
+#
+# This bundle owns the whole `llm-pi-ai` provider set: a `config` patch replaces
+# the targeted row wholesale, and a later bundle layer wins, so all five routes
+# are declared here in full. The Agent Plan catalog below was refreshed and
+# verified against the live endpoint; the Coding Plan and postpaid catalogs were
+# not re-probed and keep their previously published entries.
+#
+# Agent Plan catalog, verified 2026-11-21 against
+# https://ark.cn-beijing.volces.com/api/plan/v1/messages: every id below accepts
+# a Messages API request, deep thinking, and tool use; image input was probed
+# per model. contextWindow / maxTokens follow the Ark model-list documentation
+# and the endpoint's own max_tokens validation.
+#
+# Default wire protocol is `anthropic-messages` (the Messages API). pi-ai hands
+# `baseURL` straight to the Anthropic SDK, which appends `/v1/messages`, so the
+# base URLs below intentionally omit the `/v1` suffix.
+# ============================================================================
+
+- insert:
+    - id: ark-agent-plan
+      name: ark-agent-plan
+
+- id: llm-pi-ai
+  config:
+    providers:
+
+      # --- Agent Plan (cn-beijing) -----------------------------------------
+      ark-agent-plan-cn:
+        displayName: Ark Agent Plan
+        apiKeyEnv: ARK_AGENT_PLAN_CN_API_KEY
+        api: anthropic-messages
+        baseURL: https://ark.cn-beijing.volces.com/api/plan
+        models:
+          - id: doubao-seed-2.1-pro
+            name: Doubao Seed 2.1 Pro (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 262144
+            input: [text, image]
+          - id: doubao-seed-evolving
+            name: Doubao Seed Evolving (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 262144
+            input: [text, image]
+          - id: doubao-seed-2.1-lite
+            name: Doubao Seed 2.1 Lite (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 262144
+            input: [text, image]
+          - id: doubao-seed-2.0-mini
+            name: Doubao Seed 2.0 Mini (Agent Plan)
+            contextWindow: 262144
+            maxTokens: 131072
+            input: [text, image]
+          - id: deepseek-v4.1-flash
+            name: DeepSeek V4.1 Flash (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 393216
+            input: [text, image]
+          - id: deepseek-v4.1-flash-economy
+            name: DeepSeek V4.1 Flash Economy (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 393216
+            input: [text, image]
+          - id: deepseek-v4-pro
+            name: DeepSeek V4 Pro (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 393216
+            input: [text, image]
+          - id: deepseek-v4-flash
+            name: DeepSeek V4 Flash (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 393216
+            input: [text, image]
+          - id: glm-5.3
+            name: GLM-5.3 (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 131072
+            input: [text]
+          - id: glm-5.3-flash
+            name: GLM-5.3 Flash (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 131072
+            input: [text, image]
+          - id: kimi-k3.1-pro
+            name: Kimi K3.1 Pro (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 1048576
+            input: [text, image]
+          - id: kimi-k2.8-preview
+            name: Kimi K2.8 Preview (Agent Plan)
+            contextWindow: 1048576
+            maxTokens: 131072
+            input: [text, image]
+          - id: kimi-k3
+            name: Kimi K3 (Agent Plan, retiring)
+            contextWindow: 1048576
+            maxTokens: 131072
+            input: [text, image]
+
+      # --- Coding Plan (cn-beijing) ----------------------------------------
+      # Not re-probed against a live endpoint: keeps its previously published entries.
+      ark-coding-plan-cn:
+        displayName: Ark Coding Plan
+        apiKeyEnv: ARK_CODING_PLAN_CN_API_KEY
+        api: anthropic-messages
+        baseURL: https://ark.cn-beijing.volces.com/api/coding
+        models:
+          - id: doubao-seed-2.1-pro
+            name: Doubao Seed 2.1 Pro (Coding Plan)
+            contextWindow: 256000
+            maxTokens: 256000
+            input: [text, image]
+          - id: doubao-seed-2.1-turbo
+            name: Doubao Seed 2.1 Turbo (Coding Plan)
+            contextWindow: 256000
+            maxTokens: 256000
+            input: [text, image]
+          - id: doubao-seed-evolving
+            name: Doubao Seed Evolving (Coding Plan)
+            contextWindow: 1024000
+            maxTokens: 256000
+            input: [text, image]
+          - id: doubao-seed-2.0-lite
+            name: Doubao Seed 2.0 Lite (Coding Plan)
+            contextWindow: 256000
+            maxTokens: 128000
+            input: [text, image]
+          - id: glm-5.3
+            name: GLM-5.3 (Coding Plan)
+            contextWindow: 1024000
+            maxTokens: 128000
+            input: [text]
+          - id: deepseek-v4-pro
+            name: DeepSeek V4 Pro (Coding Plan)
+            contextWindow: 1024000
+            maxTokens: 384000
+            input: [text]
+          - id: minimax-m3
+            name: MiniMax M3 (Coding Plan)
+            contextWindow: 1024000
+            maxTokens: 128000
+            input: [text, image]
+          - id: deepseek-v4-flash
+            name: DeepSeek V4 Flash (Coding Plan)
+            contextWindow: 1024000
+            maxTokens: 384000
+            input: [text]
+
+      # --- Coding Plan (BytePlus / 娴峰) -----------------------------------
+      # Not re-probed against a live endpoint: keeps its previously published entries.
+      ark-coding-plan-byteplus:
+        displayName: Ark Coding Plan (BytePlus)
+        apiKeyEnv: ARK_CODING_PLAN_BYTEPLUS_API_KEY
+        api: anthropic-messages
+        baseURL: https://ark.ap-southeast.bytepluses.com/api/coding
+        models:
+          - id: doubao-seed-2.1-turbo
+            name: Doubao Seed 2.1 Turbo (Coding Plan BytePlus)
+            contextWindow: 256000
+            maxTokens: 65536
+            input: [text, image]
+          - id: doubao-seed-2.1-pro
+            name: Doubao Seed 2.1 Pro (Coding Plan BytePlus)
+            contextWindow: 256000
+            maxTokens: 65536
+            input: [text, image]
+
+      # --- 鍚庝粯璐?API (cn-beijing) ------------------------------------------
+      # Not re-probed against a live endpoint: keeps its previously published entries.
+      ark-cn:
+        displayName: Ark (鍚庝粯璐?
+        apiKeyEnv: ARK_CN_API_KEY
+        api: anthropic-messages
+        baseURL: https://ark.cn-beijing.volces.com/api/v3/compatible
+        models:
+          - id: doubao-seed-2.1-pro
+            name: Doubao Seed 2.1 Pro
+            contextWindow: 256000
+            maxTokens: 65536
+            input: [text, image]
+          - id: doubao-seed-2.1-turbo
+            name: Doubao Seed 2.1 Turbo
+            contextWindow: 256000
+            maxTokens: 65536
+            input: [text, image]
+          - id: doubao-seed-evolving
+            name: Doubao Seed Evolving
+            contextWindow: 1024000
+            maxTokens: 65536
+            input: [text, image]
+
+      # --- 鍚庝粯璐?API 娴峰 (BytePlus) --------------------------------------
+      # Not re-probed against a live endpoint: keeps its previously published entries.
+      ark-byteplus:
+        displayName: Ark BytePlus (鍚庝粯璐?
+        apiKeyEnv: ARK_BYTEPLUS_API_KEY
+        api: anthropic-messages
+        baseURL: https://ark.ap-southeast.bytepluses.com/api/v3/compatible
+        models:
+          - id: doubao-seed-2.1-turbo
+            name: Doubao Seed 2.1 Turbo (BytePlus)
+            contextWindow: 256000
+            maxTokens: 65536
+            input: [text, image]

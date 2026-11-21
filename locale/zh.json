@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "方舟 Agent Plan 模型",
+    "description": "把火山方舟路由接入模型选择器，模型目录更新到最新一批 Agent Plan 模型：Doubao Seed 2.1 Pro / 2.1 Lite / Evolving / 2.0 Mini、DeepSeek V4.1 Flash / V4.1 Flash Economy / V4 Pro / V4 Flash、GLM-5.3 / 5.3 Flash、Kimi K3.1 Pro / K2.8 Preview / K3。在「设置 › 模型」里粘贴 Agent Plan 的 API Key 即可（写入凭据 ARK_AGENT_PLAN_CN_API_KEY）；Coding Plan 与后付费方舟路由也会一并注册，未填 Key 时保持不可用。对话内容、图片与工具调用只发往你选中的方舟端点。关闭该插件后这些路由会从选择器中移除。"
+  }
+}

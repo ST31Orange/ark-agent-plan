@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Ark Agent Plan models",
+    "description": "Adds Volcengine Ark routes to the model picker with the current Agent Plan catalog: Doubao Seed 2.1 Pro / 2.1 Lite / Evolving / 2.0 Mini, DeepSeek V4.1 Flash / V4.1 Flash Economy / V4 Pro / V4 Flash, GLM-5.3 / 5.3 Flash, and Kimi K3.1 Pro / K2.8 Preview / K3. Paste an Agent Plan API key under Settings › Models (it is stored as ARK_AGENT_PLAN_CN_API_KEY); Coding Plan and postpaid Ark routes are registered too and stay keyless until you add their keys. Conversation text, images and tool calls go only to the Ark endpoint you select. Turning the bundle off removes those routes from the picker."
+  }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Ark Agent Plan">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12233A"/>
+      <stop offset="1" stop-color="#0B1420"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="14" y1="50" x2="50" y2="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF8A3D"/>
+      <stop offset="1" stop-color="#FFC24B"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="15" fill="url(#bg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="14.5" fill="none" stroke="#26405F" stroke-opacity="0.55"/>
+  <rect x="15" y="38" width="8" height="12" rx="2.6" fill="url(#warm)" fill-opacity="0.55"/>
+  <rect x="28" y="30" width="8" height="20" rx="2.6" fill="url(#warm)" fill-opacity="0.8"/>
+  <rect x="41" y="21" width="8" height="29" rx="2.6" fill="url(#warm)"/>
+  <path d="M45 9.5l1.5 3.9 3.9 1.5-3.9 1.5L45 20.3l-1.5-3.9-3.9-1.5 3.9-1.5z" fill="#FFD98A"/>
+  <circle cx="21.5" cy="17" r="2.2" fill="#FFB067" fill-opacity="0.9"/>
+</svg>
